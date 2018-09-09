@@ -1,0 +1,104 @@
+@import '../../common/variables.scss';
+
+.toggleForm {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}
+
+.play {
+  border-radius: 4px;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: $default-color;
+  color: #fff;
+  cursor: pointer;
+  border: 2px solid $default-color;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.25s linear;
+  text-transform: uppercase;
+
+  &:focus,
+  &:hover {
+    transform: translateY(2px);
+  }
+}
+
+.toggle-label {
+  cursor: pointer;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin-top: 8px;
+  text-transform: uppercase;
+
+  input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    &:focus + .group {
+      outline: 1px dashed gainsboro;
+    }
+
+    &:not(:checked) + .group .toggle {
+      margin-left: 50%;
+    }
+
+    + .group {
+      border-radius: 10px;
+      border: 1px solid $default-color;
+      font-size: 0.75em;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transition: all 150ms linear;
+
+      .label.on {
+        color: $default-color;
+      }
+
+      .toggle {
+        border-radius: 9px;
+        display: block;
+        position: absolute;
+        content: " ";
+        background: $default-color;
+        width: 50%;
+        height: 100%;
+        transition: margin 150ms linear;
+      }
+    }
+
+    &:checked + .group {
+      .label.off {
+        color: $default-color;
+      }
+
+      .label.on {
+        color: #fff;
+      }
+    }
+  }
+
+  .label {
+    display: flex;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+
+    &.on {
+      left: 0;
+    }
+
+    &.off {
+      right: 0;
+    }
+  }
+}
